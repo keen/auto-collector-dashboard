@@ -13,7 +13,7 @@ You can clone the project to make it your own in Glitch with your own Keen data 
 ## Getting Started
 
 To get started, you need:
-- A [Keen account](https://keen.io/signup?s=gh_ac_dash)
+- A Keen account. [Talk to our team](https://try.keen.io/contact) to get started today.
 - A Keen project with data streaming to it from the [Auto-Collector](https://keen.io/docs/streams/web-auto-collection/?s=gh_ac_dash)
 
 If you don’t already have Auto-Collector installed, drop in [this snippet](https://keen.io/docs/streams/web-auto-collection/) with your `PROJECT_ID` and `WRITE_KEY` into your website’s `<head>` code and start seeing web events flow in within seconds.
