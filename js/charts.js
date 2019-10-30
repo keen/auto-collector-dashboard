@@ -936,6 +936,9 @@ client
       })
       .then(results => {
         results.result
+          .sort((a, b) => b.result - a.result);
+
+        results.result
           .splice(10,9999);
 
         results.result.forEach(item => {
@@ -943,7 +946,7 @@ client
         });
 
         results.result = results.result.filter(item => {
-          return !!item['element.text'];
+          return !!item['element.text'] && !item['element.text'].includes('@');
         });
 
         const chart = new KeenDataviz({
