@@ -761,21 +761,24 @@ client
     });
 
     client
-    .query({
-      saved_query_name: 'autocollector-dashboard-demo---clicks-by-button-in-org-section'
-    })
-    .then(results => {
-      results.result
-      .splice(10,9999);
-
-      results.result.forEach(item => {
-        item['element.text'] = item['element.text'].trim();
-      });
-
-      results.result = results.result.filter(item => {
-        return !!item['element.text'];
-      });
-
+      .query({
+        savedQueryName: 'autocollector-dashboard-demo---clicks-by-button-in-org-section',
+      })
+      .then((results) => {
+        results.result
+          .sort((a, b) => b.result - a.result);
+        
+        results.result
+          .splice(10, 9999);
+        
+        results.result.forEach(item => {
+          item['element.text'] = item['element.text'].trim();
+        });
+    
+        results.result = results.result.filter(item => {
+          return (!!item['element.text'] && !item['element.text'].includes('@'));
+        });
+      
       const chart = new KeenDataviz({
         container: `.chart-clicks-by-button-in-org-section`,
         title: 'Clicks by Button in Projects',
@@ -788,7 +791,10 @@ client
           bottom: 20
         },
       });
-    });
+      })
+      .catch(function(error){
+        console.error(error.message);
+      });
 
     client
     .query({
