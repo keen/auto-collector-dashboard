@@ -768,7 +768,6 @@ client
       const chart = new KeenDataviz({
         container: `.chart-clicks-by-button-in-org-section`,
         title: 'Clicks - previous 24h',
-        type: 'horizontal-bar',
         type: 'area-spline',
         results,
         colors: chartColors,
