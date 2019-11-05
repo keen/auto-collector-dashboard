@@ -762,29 +762,17 @@ client
 
     client
     .query({
-      saved_query_name: 'autocollector-dashboard-demo---clicks-by-button-in-org-section'
+      saved_query_name: 'autocollector-dashboard-demo---count-clicks-previous-24h-interval-hourly'
     })
     .then(results => {
-      results.result
-      .splice(10,9999);
-
-      results.result.forEach(item => {
-        item['element.text'] = item['element.text'].trim();
-      });
-
-      results.result = results.result.filter(item => {
-        return !!item['element.text'];
-      });
-
       const chart = new KeenDataviz({
         container: `.chart-clicks-by-button-in-org-section`,
-        title: 'Clicks by Button in Projects',
-        type: 'horizontal-bar',
+        title: 'Clicks - previous 24h',
+        type: 'area-spline',
         results,
         colors: chartColors,
         sortGroups: 'desc',
         padding:{
-          left: 140,
           bottom: 20
         },
       });
