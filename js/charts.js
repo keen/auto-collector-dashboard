@@ -930,31 +930,20 @@ client
       .query({
         event_collection: 'clicks',
         analysis_type: 'count',
-        timeframe,
+        timeframe: "previous_24_hours",
+        interval: 'hourly',
         timezone,
-        group_by: 'element.text'
       })
       .then(results => {
-        results.result
-          .splice(10,9999);
-
-        results.result.forEach(item => {
-          item['element.text'] = item['element.text'].trim();
-        });
-
-        results.result = results.result.filter(item => {
-          return !!item['element.text'];
-        });
 
         const chart = new KeenDataviz({
           container: `.chart-clicks-by-button-in-org-section`,
-          title: 'Clicks by Button in Projects',
-          type: 'horizontal-bar',
+          title: 'Clicks - previous 24h',
+          type: 'area-spline',
           results,
           colors: chartColors,
           sortGroups: 'desc',
           padding:{
-            left: 140,
             bottom: 20
           },
         });
